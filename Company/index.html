@@ -1,179 +1,315 @@
-<!DOCTYPE html >
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />	
-	<title> Brand YouTube </title>
-	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-	<link rel="stylesheet" href="css/style.css" />	
-	<script type="text/javascript" src="js/prefixfree.min.js"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TIS정보기술교육센터</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
     <style>
-        * {margin:0; padding:0; }
-		ol,ul{list-style: none; }
-		a{outline:0; text-decoration:none; color:#bbb;}
-		img{border:0;}
-		body{position:fixed; width:100%; height:100%; background:#000;}
-
-		/* 배경영상 */
-		iframe{pointer-events: none;}
-
-		/*로고*/
-		h1{position:fixed; top:-20px; left:0px; z-index:10;}
-		h1 img{width:280px; height:auto;}
-		header{width:700px; height:100%; position:fixed; top:0px; left:-420px; background:linear-gradient(-45deg,#fff, #6b6b6b, #a50034); transform:skewX(-20deg); }
-
-		/* 1depth*/
-		#gnb{width:200px; position:absolute; top:200px; right:0px;}
-		#gnb>li{position:relative; }
-		#gnb>li>a{display:block; width:220px; height:50px; font:bold 18px/3 play; color:#222; box-sizing:border-box; padding-right:40px; text-align:right;}
-		#gnb>li.on>a{background:#a50034; color:#fff;}
-		#gnb>li:hover>a{background:#a50034; color:#fff;}
-		#gnb em{display:inline-block; transform:skewX(20deg)!important; }
-		#gnb em i{margin-right:20px;}
-
-		/* 2depth */
-		#gnb ul{position:absolute; left:0px;  top:0px; opacity:0; transition:all 0.4s;}
-		#gnb>li:hover ul{opacity:0.8; left:205px;}
-		#gnb ul a{display:block; width:150px; height:40px; background:#222; border-bottom:1px solid #fff; font:bold 16px/2.5 arial; color:#fff; box-sizing:border-box; padding-left:50px; margin-bottom:3px; transition:all 0.5s; }
-		#gnb ul a:hover{background:#a50034; color:#fff;}
-		#gnb>li.on ul{opacity:0.8; left:205px; top:-10px;}
-		#gnb li.on ul a{background:#6b6b6b; opacity:0.7;} 
-
-		/* sns 버튼 모음*/
-		#sns { position:fixed; top:60px; right:50px;}
-		#sns li { float:left; margin-right:30px;}
-		#sns .fa { font-size:25px; color:#a50034; opacity:0.5;	transform:scale(1); 	transition:all 0.5s;}
-		#sns .fa:hover { opacity:1; transform:scale(1.4);}
-
-		/* 텍스트 박스 */
-		.txtBox { width:340px; height:280px; position:fixed; top:200px; right:70px; }
-		.txt { position:absolute; top:200px; right:0px; font-size:34px; font-family:play; color:white; letter-spacing:-2px;}
-		.txt b { font:bold 34px arial; color:#b9fb05; 	margin-left:20px;}
-		.tit { position:absolute; top:0px; right:0px; font-size:120px; color:#a50034; font-family: 'Monoton', cursive; letter-spacing:-1px;}
-		.tit b { font-size:160px; font-family:play; color:gold;}
-
-		/* contents 레이아웃 */
-		#side { width:800px; height:100%; position:fixed; bottom:0px; right:-800px; background:#a50034; opacity:0.5; transform:skewX(-30deg); transition:all 0.5s;}
-		#side:hover { right:-500px; opacity:0.8;}
-		#side .con { width:400px; height:100%; position:absolute; left:150px; bottom:0px; background:#fff; 	box-sizing:border-box; padding:10px; transition:all  1s;}
-		#side:hover .con { left:50px;}
-
-		/* contents내 썸네일 */
-		#side .con p { width: 300px; height:100px; position:absolute; left:50px;}
-		#side .con p em { display:inline-block; font:bold 16px/1.7 arial; color:#a50034; transform:skewX(40deg);}
-		#side .con p img { width:300px; height:70px; opacity:0.3; transition:all 0.5s;}
-		#side .con p img:hover { opacity:1;}
-		#side .con p:nth-child(1) { bottom:270px; transform: translateX(200px); transition:all  0.4s;}
-		#side .con p:nth-child(2) { bottom:160px; transform: translateX(200px); transition:all  0.8s;}
-		#side .con p:nth-child(3) { bottom:50px; transform: translateX(200px); transition:all  1.2s;}
-		#side:hover .con p { transform:translateX(0px);}
-
-		/* 자동롤링 버튼*/
-		#side .btnContents { width:150px; height:50px; position:absolute;  bottom:40px; left:100px; color:#000;	transform:skewX(30deg); }
-		#side:hover .btnContents { left:700px;}	
-		.btnContents i { font-size:60px; position:absolute; bottom:0px; right:0px; opacity:1;}
-		.btnContents i:nth-child(1) { animation:ani linear 1.5s 0s infinite;}
-		.btnContents i:nth-child(2) { animation:ani linear 1.5s 0.5s infinite;}
-		.btnContents i:nth-child(3) { animation:ani linear 1.5s 1.0s infinite;}
-
-		@keyframes ani {
-		0% { right:0px; transform:sclae(1); opacity:1;}
-		100% { right:100px; transform:scale(1.5); opacity:0;}
-		}
-
-		@keyframes logo {
-		0% { transform: rotate(0deg);}
-		100% { transform: rotate(360deg);}
-		}
-		#logo{height: 40px; width: 40px; transform: skewX(20deg);}
-		.on img{animation-name: logo; animation-duration: 1s; animation-iteration-count: infinite;}
+      *{
+        font-family: 'Jua', sans-serif;
+      }
+      .navbar-brand {
+        padding-top: 7px;
+      }
+      nav a{
+        color: white !important;
+      }
+      .navbar-default {
+        background-color: #337ab7;
+        border-color: #e7e7e7;
+        opacity: 0.9;
+      }
+      .red{
+        color: red;
+      }
+      footer>div div{
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+      .cariusel-inner img{
+        width: 100%;
+        height: 700px !important;
+      }
+      .carousel-caption h3{
+        font-size: 50px;
+      }
+      .item:nth-child(1) .carousel-caption h3{
+        color: dodgerblue;
+        font-weight: bold;
+      }
+      .item:nth-child(1) .carousel-caption p{
+        color: steelblue;
+      }
+      .item:nth-child(2) .carousel-caption h3{
+        color: greenyellow;
+        font-weight: bold;
+      }
+      .item:nth-child(2) .carousel-caption p{
+        color: palevioletred;
+      }
+      .item:nth-child(3) .carousel-caption h3{
+        color: gold;
+        font-weight: bold;
+      }
+      .item:nth-child(3) .carousel-caption p{
+        color: springgreen;
+      }
+      .carousel-caption{
+         bottom: 45%;
+         font-size: 30px;
+      }
+      .container h1{
+        padding-top: 100px;
+      }
+      .container-fluid h1{
+        padding-top: 100px;
+      }
+      .title{
+        margin-top: 15px;
+      }
     </style>
+    <!-- Smooth scroll ---------------------------------------------------------------------------->
+    <script>
+      $(document).ready(function(){
+        // Add smooth scrolling to all links in navbar + footer link
+        $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
+      
+        // Make sure this.hash has a value before overriding default behavior
+        if (this.hash !== "") {
+      
+          // Prevent default anchor click behavior
+          event.preventDefault();
+      
+          // Store hash
+          var hash = this.hash;
+      
+          // Using jQuery's animate() method to add smooth page scroll
+          // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+          $('html, body').animate({
+            scrollTop: $(hash).offset().top
+          }, 900, function(){
+      
+            // Add hash (#) to URL when done scrolling (default click behavior)
+            window.location.hash = hash;
+            });
+          } // End if
+        });
+      })
+      </script>
+      <!-- Smooth scroll -->
 </head>
-<body>
+<body id="myPage">
+    <!-- Navigation ------------------------------------------------------------------------------->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#myPage"><img src="img/logo.png" alt="logo" width="200px"></a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#subject" data-toggle="collapse" data-target=".navbar-collapse.in">과정소개</a></li>
+            <li><a href="#community" data-toggle="collapse" data-target=".navbar-collapse.in">커뮤니티</a></li>
+            <li><a href="#maps" data-toggle="collapse" data-target=".navbar-collapse.in">오시는 길</a></li>
+            <li><a href="#board" data-toggle="collapse" data-target=".navbar-collapse.in">Board</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- Navigation -->
+    <!-- Carousel --------------------------------------------------------------------------------->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+          <li data-target="#myCarousel" data-slide-to="1"></li>
+          <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+      
+        <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+          <div class="item active">
+            <img src="img/pic01.jpg" alt="New York">
+            <div class="carousel-caption">
+              <h3 class="animate__animated animate__flip">직업능력 개발 우수 훈련기관 선정!!</h3>
+              <p>직업 훈련의 품질을 높이고 일자리 창출 기여에 앞장서는 훈련기관이 되겠습니다.</p>
+            </div>
+          </div>
+      
+          <div class="item">
+            <img src="img/pic02.jpg" alt="Chicago">
+            <div class="carousel-caption">
+              <h3 class="animate__animated animate__tada">이수자 평가 A등급 획득!</h3>
+              <p>직업능력개발훈련<br>이수자 평가에서 최우수 A등급을 획득하였습니다.</p>
+            </div>
+          </div>
+      
+          <div class="item">
+            <img src="img/pic03.jpg" alt="Los Angeles">
+            <div class="carousel-caption">
+              <h3 class="animate__animated animate__heartBeat">4차 산업혁명을 선도하는<br>IT 신기술 교육의 메카</h3>
+              <p>최신 IT기술 트렌드를 접목한 실무 중심의 교육으로 대한민국 4차 산업혁명 시대의 미래를 열어가겠습니다.</p>
+            </div>
+          </div>
+        </div>
+      
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+      <!-- Carousel -->
 
-	<!-- 배경동영상 -->
-	<iframe width="100%" height="100%" src="https://www.youtube.com/embed/8ofiqxOcv40?controls=0&showinfo=0&rel=0&autoplay=1&loop=1&mute=1&iv_load_policy=3&playlist=8ofiqxOcv40" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-	
-	<!-- 로고 -->
-	<h1><img src="Img/LGlogo.png" /></h1>
-	
-	<!-- header -->
-	<header>		
-		<ul id="gnb">
-			<li class="on">
-				<a href="#"><img id="logo" src="Img/LGlogo2.png"><em>About LG</em></a>
-				<ul>
-					<li><a href="#"><em><b>English</b></em></a></li>				
-				</ul>
-			</li>
-			<li>
-				<a href="#"><em>Brand Info</em></a>				
-				<ul>
-					<li><a href="#"><em>sub</em></a></li>
-					<li><a href="#"><em>sub</em></a></li>
-					<li><a href="#"><em>sub</em></a></li>
-					<li><a href="#"><em>sub</em></a></li>
-				</ul>
-			</li>
-			<li>
-				<a href="#"><em> Community</em></a>
-				<ul>
-					<li><a href="#"><em>sub</em></a></li>
-					<li><a href="#"><em>sub</em></a></li>
-					<li><a href="#"><em>sub</em></a></li>		
-				</ul>
-			</li>
-			<li>
-				<a href="#"><em>Product Value</em></a>
-				<ul>
-					<li><a href="#"><em>sub</em></a></li>
-					<li><a href="#"><em>sub</em></a></li>			
-				</ul>
-			</li>
-			<li>				
-				<a href="#"><em>Company History</em></a>
-				<ul>
-					<li><a href="#"><em>sub</em></a></li>						
-				</ul>
-			</li>	
-		</ul>
-	</header>
-	
-	<!-- sns 버튼모음 -->
-	<ul id="sns">
-		<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-		<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-		<li><a href="#"><i class="fa fa-youtube"></i></a></li>
-	</ul>
-	
-	<!-- 웹폰트 텍스트박스 -->
-	<section class="txtBox">
-		<p class="txt">Customer satisfaction</p>
-		<p class="tit">No.<b>1</b></p>
-	</section>	
-	
-	<!-- 하단 컨텐츠박스 -->
-	<section id="side">
-		<div class="con">
-			<p>
-				<em>Various Events</em>
-				<a href="#"><img src="Img/LGbusan.jpg" /></a>				
-			</p>
-			<p>
-				<em>Social Contribution</em>
-				<a href="#"><img src="Img/LGsocial.jpg" /></a>				
-			</p>
-			<p>
-				<em>Collaboration</em>
-				<a href="#"><img src="Img/LGcolabo.jpg" /></a>				
-			</p>		
-		</div>	
-		<!-- 자동롤링 버튼 -->
-		<div class="btnContents">
-			<i class="fa fa-angle-double-left"></i>
-			<i class="fa fa-angle-double-left"></i>  
-			<i class="fa fa-angle-double-left"></i>
-		</div>
-	</section>
-	
+      <!-- 과정소개 ----------------------------------------------------------------------------------->
+      <div id="subject" class="container">
+            <h1 class="text-center">과정소개</h1>
+            <div class="row text-center">
+                <div class="col-sm-3">
+                  <div class="thumbnail">
+                    <img src="img/pic04.jpg" alt="Paris">
+                    <p class="title"><strong>웹&앱 콘텐츠 융합 자바(JAVA) 응용SW 및 웹개발자 양성 과정</strong></p>
+                    <p>교육기간 : 22.09.19 ~ 23.02.15 <br><span class="red">(5개월/900시간)</span></p>
+                    <button class="btn-info">수강신청</button>
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <div class="thumbnail">
+                    <img src="img/pic05.jpg" alt="New York">
+                    <p class="title"><strong>UI/UX 기반의 웹퍼블리셔&프론트엔드 웹개발자 양성 과정</strong></p>
+                    <p>교육기간 : 22.09.26 ~ 22.12.28<br><span class="red">(3개월/520시간)</span></p>
+                    <button class="btn-info">수강신청</button>
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <div class="thumbnail">
+                    <img src="img/pic06.jpg" alt="San Francisco">
+                    <p class="title"><strong>UI/UX 기반의 프론트엔드 웹개발자 양성 과정</strong></p><br>
+                    <p>교육기간 : 22.11.24 ~ 22.12.28<br><span class="red">(5주/200시간)</span></p>
+                    <button class="btn-info">수강신청</button>
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <div class="thumbnail">
+                    <img src="img/pic07.jpg" alt="San Francisco">
+                    <p class="title"><strong>스마트 콘텐츠 융합 자바(JAVA) 응용SW 및 웹개발자 양성 과정</strong></p>
+                    <p>교육기간 : 22.11.29 ~ 23.04.27<br><span class="red">(5개월/900시간)</span></p>
+                    <button class="btn-info">수강신청</button>
+                  </div>
+              </div>
+            </div>
+      </div>
+      <!-- 과정소개 -->
+
+      <!-- 커뮤니티 ----------------------------------------------------------------------------------->
+      <div id="community" class="container">
+      <h1 class="text-center">커뮤니티</h1>
+      <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#home">교육센터 소식</a></li>
+        <li><a data-toggle="tab" href="#menu1">자주묻는 질문</a></li>
+        <li><a data-toggle="tab" href="#menu2">서식자료실</a></li>
+      </ul>
+      
+      <div class="tab-content">
+        <div id="home" class="tab-pane fade in active">
+          <h3>교육센터 소식</h3>
+          <ul class="list-group">
+            <li class="list-group-item">7월 20일(수) 개강하는 취업연수과정 OT(오리엔테이션) 안내입니다.</li>
+            <li class="list-group-item">2022년도 데이터 자격검정 시험일정입니다.</li>
+            <li class="list-group-item">스텝(STEP) 학습시 주의사항</li>
+          </ul>
+        </div>
+        <div id="menu1" class="tab-pane fade">
+          <h3>자주묻는 질문</h3>
+          <ul class="list-group">
+            <li class="list-group-item">교육센터에서 수료율과 취업률, 고용유지율 등의 교육 결과(성과)를 중요 시 하는 이유가 있나요?</li>
+            <li class="list-group-item">국민내일배움카드 지원 한도와 국비 교육 수강 횟수에 제한이 있나요?</li>
+            <li class="list-group-item">국민내일배움카드 발급을 받지 못하거나 이미 지원을 받아 국비지원이 안되면 교육수강이 안되나요?</li>
+          </ul>
+        </div>
+        <div id="menu2" class="tab-pane fade">
+          <h3>서식자료실</h3>
+          <ul class="list-group">
+            <li class="list-group-item">스마트혼합훈련(STEP) 매뉴얼(원격보조훈련 진행시)</li>
+            <li class="list-group-item">ZOOM 프로그램 설치 매뉴얼(실시간 원격훈련 진행시)</li>
+            <li class="list-group-item">HRD 출결시스템 매뉴얼(집체훈련 및 원격훈련시 사용)</li>
+          </ul>
+        </div>
+      </div>
+      </div>
+      <!-- 커뮤니티 -->
+
+      <!-- 오시는 길 ---------------------------------------------------------------------------------->
+      <div id="maps" class="container-fluid">
+        <h1 class="text-center">오시는 길</h1>
+        <div id="map" style="width:100%;height:350px;"></div>
+
+        <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=4563bcfaf8ee6a380bc451b5e6efcb35"></script>
+        <script>
+        var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+            mapOption = { 
+            center: new kakao.maps.LatLng(37.5251957, 126.8913598), // 지도의 중심좌표
+            level: 3 // 지도의 확대 레벨
+          };
+
+        var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+
+        // 마커가 표시될 위치입니다 
+        var markerPosition  = new kakao.maps.LatLng(37.5251957, 126.8913598); 
+
+        // 마커를 생성합니다
+        var marker = new kakao.maps.Marker({
+            position: markerPosition
+          });
+
+        // 마커가 지도 위에 표시되도록 설정합니다
+        marker.setMap(map);
+
+        // 아래 코드는 지도 위의 마커를 제거하는 코드입니다
+        // marker.setMap(null);    
+        </script>
+      </div>
+      <!-- 오시는 길 -->
+
+      <!-- Footer --------------------------------------------------------------------------------->
+      <footer class="container-fluid" style="background-color:#333333; padding-top: 50px; padding-bottom: 50px;">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="container" style="color: #989898;">
+              ㈜티아이에스정보시스템 / 티아이에스정보기술교육센터 / 대표이사 : 김휘준<br>
+              사업자등록번호 : 113-86-70392 / 통신판매업신고 : 제2015-서울영등포-0490호<br>
+              수강&입학문의 : 02-2069-1931 / 업무문의 : 02-2069-1930 / 팩스 : 02-2069-1932 개인정보책임자 : 이형석<br>
+              <div>
+              (우: 70255) 서울특별시 영등포구 선유로 130 (지번 : 양평동 3가 5-4번지), 에이스하이테크시티3차 2층(교무실 : 212호, 강의실 : 202호, 210호, 211호)<br>
+              </div>
+              <div> 
+              COPYRIGHT © 2013 TIS Information Technology Education Center. All RIGHTS RESERVED.<br>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <div class="container" style="padding-top: 40px; padding-left: 35%;">
+              <img src="img/logo02.png" alt="footerlogo">
+            </div>
+          </div>
+        </div>
+      </footer>
+      <!-- Footer -->
 </body>
 </html>
