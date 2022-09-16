@@ -5,6 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TIS정보기술교육센터</title>
+    <link rel="stylesheet" href="https://unpkg.com/splitting/dist/splitting.css" />
+    <link rel="stylesheet" href="https://unpkg.com/splitting/dist/splitting-cells.css" />
+    <script src="https://unpkg.com/splitting/dist/splitting.min.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -62,9 +65,12 @@
       .item:nth-child(3) .carousel-caption p{
         color: springgreen;
       }
+      .carousel-caption h3{
+        font-size: calc(0.75em + 2vw);
+      }
       .carousel-caption{
-         bottom: 45%;
-         font-size: 30px;
+         bottom: 30%;
+         font-size: calc(0.75em + 2vw);
       }
       .container h1{
         padding-top: 100px;
@@ -74,6 +80,10 @@
       }
       .title{
         margin-top: 15px;
+      }
+      .sub.splitting .char{
+        animation: bounceInDown 1s;
+        animation-delay: calc(60ms * var(--char-index)) !important;
       }
     </style>
     <!-- Smooth scroll ---------------------------------------------------------------------------->
@@ -143,7 +153,7 @@
             <img src="img/pic01.jpg" alt="New York">
             <div class="carousel-caption">
               <h3 class="animate__animated animate__flip">직업능력 개발 우수 훈련기관 선정!!</h3>
-              <p>직업 훈련의 품질을 높이고 일자리 창출 기여에 앞장서는 훈련기관이 되겠습니다.</p>
+              <p class="sub" data-splitting>직업 훈련의 품질을 높이고 일자리 창출 기여에 앞장서는 훈련기관이 되겠습니다.</p>
             </div>
           </div>
       
@@ -151,7 +161,7 @@
             <img src="img/pic02.jpg" alt="Chicago">
             <div class="carousel-caption">
               <h3 class="animate__animated animate__tada">이수자 평가 A등급 획득!</h3>
-              <p>직업능력개발훈련<br>이수자 평가에서 최우수 A등급을 획득하였습니다.</p>
+              <p class="sub" data-splitting>직업능력개발훈련<br>이수자 평가에서 최우수 A등급을 획득하였습니다.</p>
             </div>
           </div>
       
@@ -159,7 +169,7 @@
             <img src="img/pic03.jpg" alt="Los Angeles">
             <div class="carousel-caption">
               <h3 class="animate__animated animate__heartBeat">4차 산업혁명을 선도하는<br>IT 신기술 교육의 메카</h3>
-              <p>최신 IT기술 트렌드를 접목한 실무 중심의 교육으로 대한민국 4차 산업혁명 시대의 미래를 열어가겠습니다.</p>
+              <p class="sub" data-splitting>최신 IT기술 트렌드를 접목한 실무 중심의 교육으로 대한민국 4차 산업혁명 시대의 미래를 열어가겠습니다.</p>
             </div>
           </div>
         </div>
@@ -311,4 +321,7 @@
       </footer>
       <!-- Footer -->
 </body>
+<script>
+  Splitting();
+</script>
 </html>
